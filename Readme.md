@@ -42,18 +42,22 @@ resource "aws_instance" "myserver" {
 
 git clone "REPO_URL"
 
-# Now init the Terraform file
+*** Now init the Terraform file
 
 command :- terraform init
 
-# Now Plan for Terraform
+*** Now Plan for Terraform
 
 In this step The terraform scan the project and install all the dependices required for the project
 
 command :- terraform plan
 
-# To Apply all changes and create/execution of file to create ec2 instance
+*** To Apply all changes and create/execution of file to create ec2 instance
 
 command :- terraform apply
 
 here your file is executed and New instance is created 
+
+*** To Destroy or Terminate the Instance created by Terraform use
+
+Command :- terraform destroy

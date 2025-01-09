@@ -58,6 +58,6 @@ command :- terraform apply
 
 here your file is executed and New instance is created 
 
-*** To Destroy or Terminate the Instance created by Terraform use
+*** To Destroy or Terminate the Instance created by Terraform use ***
 
 Command :- terraform destroy

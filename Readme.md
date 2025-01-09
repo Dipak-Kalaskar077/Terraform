@@ -1,8 +1,8 @@
-# Terraform
+# Terraform Installation and Commands
 
 Terraform is an open-source software tool that helps users configure and manage infrastructure as code (IaC)
 
-# Install Terraform on Linux/ubuntu Using Package Repository
+*** Install Terraform on Linux/ubuntu Using Package Repository ***
 
 wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor | sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg
 
@@ -14,13 +14,13 @@ sudo apt install terraform
 
 terraform --version
 
-# Attach Role to Instance
+*** Attach Role to Instance ***
 
 create Role for terraform
 
 Role :- policy > EC2 Full access
 
-# Clone The Repo which have Terraform file
+*** Clone The Repo which have Terraform file ***
 
 #This is code for launching the instance 
 #create a repo and store this code to github
@@ -42,17 +42,17 @@ resource "aws_instance" "myserver" {
 
 git clone "REPO_URL"
 
-*** Now init the Terraform file
+*** Now init the Terraform file ***
 
 command :- terraform init
 
-*** Now Plan for Terraform
+*** Now Plan for Terraform ***
 
 In this step The terraform scan the project and install all the dependices required for the project
 
 command :- terraform plan
 
-*** To Apply all changes and create/execution of file to create ec2 instance
+*** To Apply all changes and create/execution of file to create ec2 instance ***
 
 command :- terraform apply
 

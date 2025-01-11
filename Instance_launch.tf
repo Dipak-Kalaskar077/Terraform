@@ -41,6 +41,6 @@ resource "aws_subnet" "private_subnet_cidr" {
 
   tags = {
     Name = "Private Subnet ${count.index + 1}"
-  }
+  } 
   
 }

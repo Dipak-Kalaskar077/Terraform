@@ -88,3 +88,12 @@ resource "aws_security_group" "Dipak_SG" {
     Name = "Dipak_SG"
   }
 }
+
+
+# IAM Policies
+# To create the resources in this example, you need to attach the following IAM policies to the IAM user or role that you use to run Terraform:
+
+# AmazonEC2FullAccess: Provides full access to Amazon EC2 resources.
+# AmazonVPCFullAccess: Provides full access to Amazon VPC resources.
+# IAMFullAccess: Provides full access to IAM resources (if you need to create or manage IAM roles and policies).
+# AmazonS3FullAccess: Provides full access to Amazon S3 resources (if you need to store Terraform state files in S3).

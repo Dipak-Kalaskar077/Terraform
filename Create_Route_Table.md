@@ -1,4 +1,4 @@
-# Create Route Table
+# Create Route Table using terraform
 
 provider "aws" {
    region = "us-east-1"

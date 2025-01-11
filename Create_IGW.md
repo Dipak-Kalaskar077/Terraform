@@ -1,3 +1,5 @@
+ # Create Internet Gateway Using Terraform
+ 
  provider "aws" {
    region = "us-east-1"
  }

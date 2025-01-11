@@ -83,6 +83,12 @@ resource "aws_route_table_association" "public_subnet_Association" {
   route_table_id = aws_route_table.Dipak_Route_Table.id
 }
 
+resource "aws_route_table_association" "private_subnet_Association" {
+  count = length(var.private_subnet_cidr)
+  subnet_id = element(aws_subnet.private_subnet_cidr[*].id, count.index)
+  route_table_id = aws_route_table.Dipak_Route_Table.id
+}
+
 resource "aws_security_group" "Dipak_SG" {
   vpc_id = aws_vpc.Dipak_VPC.id
 

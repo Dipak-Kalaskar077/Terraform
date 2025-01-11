@@ -56,7 +56,7 @@ resource "aws_internet_gateway" "Dipak_IGW" {
 resource "aws_route_table" "Dipak_Route_Table" {
   vpc_id = aws_vpc.Dipak_VPC.id
 
-  route = {
+  route {
     cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.Dipak_IGW.id
   }
@@ -66,7 +66,7 @@ resource "aws_route_table" "Dipak_Route_Table" {
   }
 }
 
-resource "aws_route_table_association" "Public_subnet_Association" {
+resource "aws_route_table_association" "public_subnet_Association" {
   count = length(var.public_subnet_cidr)
   subnet_id = element(aws_subnet.public_subnet_cidr[*].id, count.index)
   route_table_id = aws_route_table.Dipak_Route_Table.id
@@ -80,11 +80,12 @@ resource "aws_route_table_association" "Private_subnet_Association" {
 
 resource "aws_security_group" "Dipak_SG" {
   vpc_id = aws_vpc.Dipak_VPC.id
+
   ingress {
     protocol = "tcp"
     from_port = 8080
     to_port = 8080
-    cidr_blocks = var.Dipak_SG.public_subnet_cidr
+    cidr_blocks = var.public_subnet_cidr
   }
 
   tags = {

@@ -62,7 +62,7 @@ resource "aws_route_table" "Dipak_Route_Table" {
   }
 
   tags = {
-    Name = Dipak_Route_Table
+    Name = "Dipak_Route_Table"
   }
 }
 
@@ -80,11 +80,11 @@ resource "aws_route_table_association" "Private_subnet_Association" {
 
 resource "aws_security_group" "Dipak_SG" {
   vpc_id = aws_vpc.Dipak_VPC.id
-  ingress = {
-    protocol = "Custom TCP"
-    form_port = 8080
+  ingress {
+    protocol = "tcp"
+    from_port = 8080
     to_port = 8080
-    cidr = var.Dipak_SG.public_subnet_cidr
+    cidr_blocks = var.Dipak_SG.public_subnet_cidr
   }
 
   tags = {

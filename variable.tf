@@ -8,4 +8,4 @@ variable "private_subnet_cidr" {
  type = list(string)
  description = "Private subnet CIDR value"
  default = [ "10.0.2.0/24" ] 
-} 
+}  

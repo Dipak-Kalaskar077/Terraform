@@ -6,7 +6,7 @@ resource "aws_instance" "myserver" {
   ami                    = "ami-0e2c8caa4b6378d8c"
   key_name               = "vaibhav.key.pem"
   instance_type          = "t2.micro"
-  vpc_security_group_ids = aws_security_group.Dipak_SG.id
+  vpc_security_group_ids = [aws_security_group.Dipak_SG.id]
   availability_zone      = "us-east-1b"
   tags = { 
     Name        = "dipak-terraform-instance"  # Instance name tag
@@ -19,10 +19,8 @@ resource "aws_vpc" "Dipak_VPC" {
 
   tags = {
     Name = "Dipak_VPC"
-
   }
 }
-
 
 resource "aws_subnet" "public_subnet_cidr" {
   count = length(var.public_subnet_cidr)
@@ -41,8 +39,7 @@ resource "aws_subnet" "private_subnet_cidr" {
 
   tags = {
     Name = "Private Subnet ${count.index + 1}"
-  } 
-  
+  }
 }
 
 resource "aws_internet_gateway" "Dipak_IGW" {

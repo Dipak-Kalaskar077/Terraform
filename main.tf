@@ -15,7 +15,7 @@ resource "aws_instance" "myserver" {
                           sudo yum update -y
                           sudo yum install -y java-1.8.0-openjdk
                           sudo yum install -y wget
-                          wget https://archiv e.apache.org/dist/tomcat/tomcat-9/v9.0.41/bin/apache-tomcat-9.0.41.tar.gz
+                          wget https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.41/bin/apache-tomcat-9.0.41.tar.gz
                           tar -xzf apache-tomcat-9.0.41.tar.gz
                           sudo mv apache-tomcat-9.0.41 /usr/local/tomcat9
                           sudo chmod +x /usr/local/tomcat9/bin/*.sh
@@ -39,6 +39,7 @@ resource "aws_subnet" "public_subnet_cidr" {
   count = length(var.public_subnet_cidr)
   vpc_id = aws_vpc.Dipak_VPC.id
   cidr_block = element(var.public_subnet_cidr, count.index)
+  map_public_ip_on_launch = true
 
   tags = {
     Name = "Public Subnet ${count.index + 1}"

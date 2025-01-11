@@ -1,3 +1,5 @@
+# Create Route Table
+
 provider "aws" {
    region = "us-east-1"
  }

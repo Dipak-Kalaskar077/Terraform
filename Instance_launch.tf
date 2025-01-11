@@ -8,7 +8,7 @@
 #   instance_type          = "t2.micro"
 #   vpc_security_group_ids = ["sg-0a7c002efafb49d30"]
 #   availability_zone      = "us-east-1b"
-#   tags = {
+#   tags = { 
 #     Name        = "dipak-terraform-instance"  # Instance name tag
 #     Environment = "dev"
 #   }
@@ -24,23 +24,23 @@
 # }
 
 
-resource "aws_subnet" "public_subnet_cidr" {
-  count = length(var.public_subnet_cidr)
-  vpc_id = aws_vpc.Dipak_VPC.id
-  cidr_block = element(var.public_subnet_cidr, count.index)
+# resource "aws_subnet" "public_subnet_cidr" {
+#   count = length(var.public_subnet_cidr)
+#   vpc_id = aws_vpc.Dipak_VPC.id
+#   cidr_block = element(var.public_subnet_cidr, count.index)
 
-  tags = {
-    Name = "Public Subnet ${count.index + 1}"
-  }
-}
+#   tags = {
+#     Name = "Public Subnet ${count.index + 1}"
+#   }
+# }
 
-resource "aws_subnet" "private_subnet_cidr" {
-  count = length(var.private_subnet_cidr)
-  vpc_id = aws_vpc.Dipak_VPC.id
-  cidr_block = element(var.private_subnet_cidr, count.index)
+# resource "aws_subnet" "private_subnet_cidr" {
+#   count = length(var.private_subnet_cidr)
+#   vpc_id = aws_vpc.Dipak_VPC.id
+#   cidr_block = element(var.private_subnet_cidr, count.index)
 
-  tags = {
-    Name = "Private Subnet ${count.index + 1}"
-  } 
+#   tags = {
+#     Name = "Private Subnet ${count.index + 1}"
+#   } 
   
-}
+# }

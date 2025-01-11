@@ -7,7 +7,6 @@ resource "aws_instance" "myserver" {
   key_name               = "vaibhav.key.pem"
   instance_type          = "t2.micro"
   vpc_security_group_ids = [aws_security_group.Dipak_SG.id]
-  availability_zone      = "us-east-1b"
   tags = { 
     Name        = "dipak-terraform-instance"  # Instance name tag
     Environment = "dev"

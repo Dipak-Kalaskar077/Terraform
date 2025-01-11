@@ -7,6 +7,7 @@ resource "aws_instance" "myserver" {
   key_name               = "vaibhav.key.pem"
   instance_type          = "t2.micro"
   vpc_security_group_ids = [aws_security_group.Dipak_SG.id]
+  subnet_id              = aws_subnet.public_subnet_cidr[0].id
   tags = { 
     Name        = "dipak-terraform-instance"  # Instance name tag
     Environment = "dev"
@@ -81,7 +82,7 @@ resource "aws_security_group" "Dipak_SG" {
     protocol = "tcp"
     from_port = 8080
     to_port = 8080
-    cidr_blocks = var.public_subnet_cidr
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   tags = {

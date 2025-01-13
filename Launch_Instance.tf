@@ -1,73 +1,65 @@
 provider "aws" {
-  region = "us-east-1"
+  region = "us-east-1"  # Choose your region
 }
 
-resource "aws_instance" "myserver" {
-  ami                    = "ami-0e2c8caa4b6378d8c"  # Ubuntu AMI ID
-  key_name               = "vaibhav.key.pem"
+resource "aws_instance" "default_vpc_instance" {
+  ami                    = "ami-0e2c8caa4b6378d8c"  # Replace with a valid AMI ID for your region
   instance_type          = "t2.micro"
+  key_name               = "vaibhav.key.pem"        # Replace with your key pair name
+  associate_public_ip_address = true               # Ensures public IP is assigned
 
-  # Automatically assign a public IP
-  associate_public_ip_address = true
-
-  # Security group to allow SSH and HTTP
-  vpc_security_group_ids = [aws_security_group.my_sg.id]
-
-  ## User data to install Java and Tomcat
+  # User data script for installing Java and Tomcat
   user_data = <<-EOF
               #!/bin/bash
-              # Update package lists and upgrade installed packages
               sudo apt update -y
               sudo apt upgrade -y
-
-              # Install Java 8 and wget
               sudo apt install -y openjdk-8-jdk wget
-
-              # Download and extract Tomcat
               wget https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.41/bin/apache-tomcat-9.0.41.tar.gz
               tar -xzf apache-tomcat-9.0.41.tar.gz
-
-              # Move Tomcat to /usr/local and set permissions
               sudo mv apache-tomcat-9.0.41 /usr/local/tomcat9
               sudo chmod +x /usr/local/tomcat9/bin/*.sh
-
-              # Start Tomcat server
               sudo /usr/local/tomcat9/bin/startup.sh > /var/log/tomcat-startup.log 2>&1 &
               EOF
 
-  tags = { 
-    Name        = "dipak-terraform-instance"  # Instance name tag
-    Environment = "dev"
+  # Use the default security group
+  vpc_security_group_ids = [aws_security_group.default_sg.id]
+
+  tags = {
+    Name = "default-vpc-instance"
   }
 }
 
-resource "aws_security_group" "my_sg" {
-  name_prefix = "dipak-sg-"
-  description = "Allow SSH and HTTP access"
+resource "aws_security_group" "default_sg" {
+  name_prefix = "default-sg-"
+  description = "Allow SSH and HTTP traffic"
   vpc_id      = data.aws_vpc.default.id
 
   ingress {
-    protocol   = "tcp"
-    from_port  = 22
-    to_port    = 22
-    cidr_blocks = ["0.0.0.0/0"]  # SSH access
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]  # Allow SSH from anywhere
   }
 
   ingress {
-    protocol   = "tcp"
-    from_port  = 8080
-    to_port    = 8080
-    cidr_blocks = ["0.0.0.0/0"]  # Tomcat access
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]  # Allow HTTP (Tomcat) from anywhere
   }
 
   egress {
-    protocol   = "-1"
-    from_port  = 0
-    to_port    = 0
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]  # Allow all outbound traffic
   }
 
   tags = {
-    Name = "Dipak_SG"
+    Name = "default-vpc-sg"
   }
+}
+
+data "aws_vpc" "default" {
+  default = true
 }

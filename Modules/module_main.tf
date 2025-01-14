@@ -9,7 +9,7 @@ provider "aws" {
 }
 
 module "aws_instance" {
-  source = "instance"
+  source = "Launch instance"
   ami_id = var.ami_id
   key_name = var.key_name
   instance_type = var.instance_type
@@ -17,7 +17,7 @@ module "aws_instance" {
   env = var.env
 }
 module "myvpc" {
-  source = "vpc"
+  source = "VPC"
   vpc_cidr = var.vpc_cidr
   pvt_subnet_cidr = var.pvt_subnet_cidr
   pub_subnet_cidr = var.pub_subnet_cidr

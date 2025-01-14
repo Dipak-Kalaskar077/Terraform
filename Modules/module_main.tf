@@ -17,7 +17,7 @@ module "aws_instance" {
   env = var.env
 }
 module "myvpc" {
-  source = "VPC"
+  source = "./VPC"
   vpc_cidr = var.vpc_cidr
   pvt_subnet_cidr = var.pvt_subnet_cidr
   pub_subnet_cidr = var.pub_subnet_cidr

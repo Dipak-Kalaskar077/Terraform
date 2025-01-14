@@ -9,7 +9,7 @@ provider "aws" {
 }
 
 module "aws_instance" {
-  source = "Launch instance"
+  source = "Terraform/Modules/Launch Instance/main.tf"
   ami_id = var.ami_id
   key_name = var.key_name
   instance_type = var.instance_type

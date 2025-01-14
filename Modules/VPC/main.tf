@@ -1,27 +1,30 @@
 resource "aws_vpc" "mynetwork" {
-    cidr_block = var.vpc_cidr
-    tags = {
-      name = var.project
-      env = var.env
-    }
+  cidr_block = var.vpc_cidr
+  tags = {
+    Name = var.project
+    Env  = var.env
+  }
 }
+
 resource "aws_subnet" "pvt_subnet" {
   vpc_id = aws_vpc.mynetwork.id
-  cidr_block = var.pvt.subnet_cidr 
+  cidr_block = var.pvt_subnet_cidr
   tags = {
-      name = var.project
-      env = var.env
-    }
+    Name = var.project
+    Env  = var.env
+  }
 }
+
 resource "aws_subnet" "pub_subnet" {
   vpc_id = aws_vpc.mynetwork.id
-  cidr_block = var.pvt.subnet_cidr 
+  cidr_block = var.pub_subnet_cidr
+  map_public_ip_on_launch = true
   tags = {
-      name = var.project
-      env = var.env
-    }
-    map_public_ip_on_launch = true
+    Name = var.project
+    Env  = var.env
+  }
 }
+
 resource "aws_internet_gateway" "my_igw" {
     vpc_id = aws_vpc.mynetwork.id
     tags = {

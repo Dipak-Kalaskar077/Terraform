@@ -1,6 +1,14 @@
-
 provider "aws" {
   region = var.aws_region
+}
+
+module "myvpc" {
+  source = "./VPC"
+  vpc_cidr = var.vpc_cidr
+  pvt_subnet_cidr = var.pvt_subnet_cidr
+  pub_subnet_cidr = var.pub_subnet_cidr
+  project = var.project
+  env = var.env
 }
 
 module "aws_instance" {
@@ -8,14 +16,8 @@ module "aws_instance" {
   ami_id = var.ami_id
   key_name = var.key_name
   instance_type = var.instance_type
-  project = var.project
-  env = var.env
-}
-module "myvpc" {
-  source = "./VPC"
-  vpc_cidr = var.vpc_cidr
-  pvt_subnet_cidr = var.pvt_subnet_cidr
-  pub_subnet_cidr = var.pub_subnet_cidr
+  vpc_id = module.myvpc.vpc_id
+  subnet_id = module.myvpc.pub_subnet_id
   project = var.project
   env = var.env
 }

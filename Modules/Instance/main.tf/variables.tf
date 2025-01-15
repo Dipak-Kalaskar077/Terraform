@@ -1,9 +1,9 @@
-variable "ami_id" {
-  description = "The AMI ID to use for the instance"
-  type        = string
-  default = "ami-01816d07b1128cd2d"
+variable "ami_id" {}
+#   description = "The AMI ID to use for the instance"
+#   type        = string
+#   default = "ami-01816d07b1128cd2d"
 
-}
+# }
 
 variable "key_name" {
   description = "The key name to use for the instance"

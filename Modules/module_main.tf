@@ -12,11 +12,11 @@ module "myvpc" {
 }
 
 module "Instance" {
-  source = "Instance"
+  source = "./Instance/main.tf"
   ami = var.ami_id
   key_name = var.key_name
   instance_type = var.instance_type
-  vpc_id = module.myvpc.vpc_id
+ 
   subnet_id = module.myvpc.pub_subnet_id
   project = var.project
   env = var.env

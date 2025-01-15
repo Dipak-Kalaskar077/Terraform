@@ -11,7 +11,7 @@ module "myvpc" {
   env = var.env
 }
 
-module "Instance" {
+module "Launch Instance" {
   source = "./Launch Instance/variables.tf"
   ami = var.ami_id
   key_name = var.key_name

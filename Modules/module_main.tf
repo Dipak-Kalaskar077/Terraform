@@ -12,7 +12,7 @@ module "myvpc" {
 }
 
 module "Instance" {
-  source = "./Instance"
+  source = ./Instance
   ami = var.ami_id
   key_name = var.key_name
   instance_type = var.instance_type

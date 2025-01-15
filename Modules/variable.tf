@@ -25,3 +25,7 @@ variable "pvt_subnet_cidr" {
 variable "pub_subnet_cidr" {
   default = "10.0.2.0/20"
 }
+variable "ami_id" {
+  default = "ami-01816d07b1128cd2d"
+  
+}

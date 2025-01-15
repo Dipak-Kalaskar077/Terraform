@@ -13,19 +13,11 @@ module "myvpc" {
 
 module "Instance" {
   source = "./Instance/main.tf"
-  ami = var.ami_id
+  ami_id = var.ami_id
   key_name = var.key_name
   instance_type = var.instance_type
  
   subnet_id = module.myvpc.pub_subnet_id
   project = var.project
   env = var.env
-}
-
-output "vpc_id" {
-  value = module.myvpc.vpc_id
-}
-
-output "instance_public_ip" {
-  value = module.aws_instance.public_ip
 }

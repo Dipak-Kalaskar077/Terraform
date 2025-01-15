@@ -11,8 +11,8 @@ module "myvpc" {
   env = var.env
 }
 
-module "Launch Instance" {
-  source = "./Launch Instance"
+module "Instance" {
+  source = "./Instance"
   ami = var.ami_id
   key_name = var.key_name
   instance_type = var.instance_type

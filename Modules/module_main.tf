@@ -12,7 +12,7 @@ module "myvpc" {
 }
 
 module "Instance" {
-  source = ".Instance"
+  source = "./Launch Instance/variables.tf"
   ami = var.ami_id
   key_name = var.key_name
   instance_type = var.instance_type

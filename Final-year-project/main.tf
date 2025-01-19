@@ -12,7 +12,7 @@ resource "aws_instance" "emr_instance" {
     #!/bin/bash
     sudo apt update -y
     sudo apt install -y nginx git
-    git clone https://github.com/Dipak-Kalaskar077/Final-Year-Project.git /var/www/html
+    sudo git clone https://github.com/Dipak-Kalaskar077/Final-Year-Project.git /var/www/html
     sudo systemctl restart nginx
   EOF
 

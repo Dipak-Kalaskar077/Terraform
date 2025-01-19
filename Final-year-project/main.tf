@@ -11,11 +11,16 @@ resource "aws_instance" "emr_instance" {
   user_data = <<-EOF
     #!/bin/bash
     sudo apt update -y
-    sudo apt install -y apache2 mysql-server php libapache2-mod-php php-mysql git
+    sudo apt install apache2 -y
     sudo systemctl start apache2
     sudo systemctl enable apache2
+    sudo apt install mysql-server
     sudo systemctl start mysql
     sudo systemctl enable mysql
+
+    sudo apt install php libapache2-mod-php php-mysql
+    sudo systemctl restart apache2
+
 
     # Clone the project from GitHub
     cd /var/www/html

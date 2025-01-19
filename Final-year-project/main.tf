@@ -12,7 +12,11 @@ resource "aws_instance" "emr_instance" {
     #!/bin/bash
     sudo apt update -y
     sudo apt install -y nginx git
-    sudo git clone https://github.com/Dipak-Kalaskar077/Final-Year-Project.git /var/www/html
+    sudo rm /var/www/html/index.nginx-debian.html
+    cd /var/www/html
+    sudo git clone https://github.com/Dipak-Kalaskar077/Final-Year-Project.git .
+    sudo chown -R www-data:www-data /var/www/html
+    sudo chmod -R 755 /var/www/html
     sudo systemctl restart nginx
   EOF
 

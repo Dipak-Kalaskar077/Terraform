@@ -14,7 +14,7 @@ resource "aws_instance" "emr_instance" {
     sudo apt install apache2 -y
     sudo systemctl start apache2
     sudo systemctl enable apache2
-    sudo apt install mysql-server
+    sudo apt install mysql-server -y
     sudo systemctl start mysql
     sudo systemctl enable mysql
 

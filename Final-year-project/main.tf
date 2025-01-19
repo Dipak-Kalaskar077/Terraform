@@ -24,6 +24,7 @@ resource "aws_instance" "emr_instance" {
 
     # Clone the project from GitHub
     cd /var/www/html
+    sudo rm -rvf index.html
     sudo git clone https://github.com/Dipak-Kalaskar077/Final-Year-Project.git .
     sudo chown -R www-data:www-data /var/www/html
     sudo chmod -R 755 /var/www/html

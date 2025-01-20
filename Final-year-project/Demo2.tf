@@ -46,10 +46,10 @@ resource "aws_instance" "emr_instance" {
     \$password = 'dipak@2424.';
     \$dbname = 'edoc';
 
-    \$conn = new mysqli(\$host, \$username, \$password, \$dbname);
+    \$database = new mysqli(\$host, \$username, \$password, \$dbname);
 
-    if (\$conn->connect_error) {
-        die('Connection failed: ' . \$conn->connect_error);
+    if (\$database->connect_error) {
+        die('Connection failed: ' . \$database->connect_error);
     }
     ?>" | sudo tee /var/www/html/connection.php > /dev/null
 

@@ -64,6 +64,5 @@ Command :- terraform destroy
 
 
 
-***Anuradha kathe added to team***
 
 

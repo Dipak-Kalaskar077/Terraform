@@ -5,7 +5,7 @@ provider "aws" {
 resource "aws_instance" "emr_instance" {
   ami           = "ami-00bb6a80f01f03502"  # Your provided AMI ID
   instance_type = "t2.micro"
-  key_name      = "Dipak.pem"  # Your provided key name
+  key_name      = "Dipak"  # Your provided key name
   security_groups = ["launch-wizard-1"]  # Your provided security group
 
   user_data = <<-EOF
